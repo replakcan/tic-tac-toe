@@ -73,3 +73,10 @@ const Gameboard = (function (player1, player2) {
   return Object.assign({}, { gameboard, playGame })
 })(alper, mutlu)
 
+Gameboard.playGame(0)
+Gameboard.playGame(7)
+Gameboard.playGame(1)
+Gameboard.playGame(4)
+Gameboard.playGame(2)
+
+console.log(Gameboard.gameboard)
