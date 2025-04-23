@@ -1,3 +1,5 @@
+import TicTacToeBoard from './component/Gameboard.js'
+
 const Player = function (name, marker) {
   return { name, marker }
 }
@@ -5,8 +7,15 @@ const Player = function (name, marker) {
 const alper = Player('alper', 'X')
 const mutlu = Player('mutlu', 'O')
 
-const Gameboard = (function (player1, player2) {
-  const gameboard = new Array(9).fill(null)
+const Gameboard = (function (player1, player2, document) {
+  let firstPlayerTurn = true
+  let player
+  let winner
+
+  const gameboard = TicTacToeBoard()
+  document.body.appendChild(gameboard)
+
+  const gameboardCells = [...document.querySelectorAll('.gameboard-cell')]
 
   const winConditions = [
     [0, 1, 2],
@@ -19,29 +28,33 @@ const Gameboard = (function (player1, player2) {
     [2, 4, 6],
   ]
 
-  let firstPlayerTurn = true
-  let player
-  let winner
+  gameboardCells.map((cell) => {
+    cell.addEventListener('click', (e) => {
+      const { textContent } = e.target
+      if (textContent != '') return
+
+      playGame(e.target)
+    })
+  })
 
   function changePlayerTurn() {
     firstPlayerTurn = !firstPlayerTurn
   }
 
-  function makeMove(index) {
-
+  function makeMove(cell) {
     firstPlayerTurn ? (player = player1) : (player = player2)
 
-    gameboard.splice(index, 1, player.marker)
+    cell.textContent = player.marker
   }
 
   function checkWin() {
-    return winConditions.some((wc) => {
-      if (wc.every((el) => gameboard[el] == player1.marker)) {
+    return winConditions.some((wincon) => {
+      if (wincon.every((con) => document.getElementById(con).textContent == player1.marker)) {
         winner = player1
         return true
       }
 
-      if (wc.every((el) => gameboard[el] == player2.marker)) {
+      if (wincon.every((con) => document.getElementById(con).textContent == player2.marker)) {
         winner = player2
         return true
       }
@@ -59,18 +72,16 @@ const Gameboard = (function (player1, player2) {
   }
 
   function resetGameboard() {
-    gameboard.fill(null)
+    gameboardCells.map((cell) => (cell.textContent = ''))
   }
 
-  function playGame(index) {
-    if (gameboard[index] != null) return
-
-    makeMove(index)
+  function playGame(cell) {
+    makeMove(cell)
 
     if (checkWin()) {
       declareWinner()
       resetGameboard()
-    } else if (gameboard.every((el) => el != null)) {
+    } else if (gameboardCells.every((el) => el.textContent != '')) {
       declareTie()
       resetGameboard()
     }
@@ -78,12 +89,4 @@ const Gameboard = (function (player1, player2) {
   }
 
   return Object.assign({}, { gameboard, playGame })
-})(alper, mutlu)
-
-Gameboard.playGame(0)
-Gameboard.playGame(7)
-Gameboard.playGame(1)
-Gameboard.playGame(4)
-Gameboard.playGame(2)
-
-console.log(Gameboard.gameboard)
+})(alper, mutlu, document)
