@@ -28,12 +28,10 @@ const Gameboard = (function (player1, player2) {
   }
 
   function makeMove(index) {
-    if (gameboard[index] != null) return
 
     firstPlayerTurn ? (player = player1) : (player = player2)
 
     gameboard.splice(index, 1, player.marker)
-    changePlayerTurn()
   }
 
   function checkWin() {
@@ -65,6 +63,8 @@ const Gameboard = (function (player1, player2) {
   }
 
   function playGame(index) {
+    if (gameboard[index] != null) return
+
     makeMove(index)
 
     if (checkWin()) {
@@ -74,6 +74,7 @@ const Gameboard = (function (player1, player2) {
       declareTie()
       resetGameboard()
     }
+    changePlayerTurn()
   }
 
   return Object.assign({}, { gameboard, playGame })
