@@ -10,6 +10,9 @@ const player2 = Player('player2', 'O')
 
 document.body.appendChild(PlayerCard(player1))
 
+const resultDialog = document.createElement('dialog')
+document.body.appendChild(resultDialog)
+
 const Gameboard = (function (player1, player2, document) {
   let firstPlayerTurn = true
   let player
@@ -67,11 +70,17 @@ const Gameboard = (function (player1, player2, document) {
   }
 
   function declareWinner() {
-    return `${winner.name} wins!`
+    resultDialog.textContent = `${winner.name} wins!`
+    resultDialog.showModal()
+
+    setTimeout(() => resultDialog.close(), 2000)
   }
 
   function declareTie() {
-    return 'game is tie!'
+    resultDialog.textContent = `it\s a tie!`
+    resultDialog.showModal()
+
+    setTimeout(() => resultDialog.close(), 2000)
   }
 
   function resetGameboard() {
