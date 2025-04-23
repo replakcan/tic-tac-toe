@@ -38,11 +38,17 @@ const Gameboard = (function (player1, player2) {
 
   function checkWin() {
     return winConditions.some((wc) => {
-      if (wc.every((el) => gameboard[el] == player1.marker)) winner = player1
+      if (wc.every((el) => gameboard[el] == player1.marker)) {
+        winner = player1
+        return true
+      }
 
-      if (wc.every((el) => gameboard[el] == player2.marker)) winner = player2
+      if (wc.every((el) => gameboard[el] == player2.marker)) {
+        winner = player2
+        return true
+      }
 
-      return winner
+      return false
     })
   }
 
