@@ -4,6 +4,19 @@
 }
 
   font-family: Norse;
+
+.player-card {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 1rem;
+  position: absolute;
+  color: red;
+}
+
+.player-card:last-child {
+  right: 0;
+}
+
 dialog {
   font-size: 6rem;
   top: 50%;
