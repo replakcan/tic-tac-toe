@@ -1,11 +1,14 @@
 import TicTacToeBoard from './component/Gameboard.js'
+import PlayerCard from './component/Playercard.js'
 
 const Player = function (name, marker) {
   return { name, marker }
 }
 
-const alper = Player('alper', 'X')
-const mutlu = Player('mutlu', 'O')
+const player1 = Player('player1', 'X')
+const player2 = Player('player2', 'O')
+
+document.body.appendChild(PlayerCard(player1))
 
 const Gameboard = (function (player1, player2, document) {
   let firstPlayerTurn = true
@@ -64,11 +67,11 @@ const Gameboard = (function (player1, player2, document) {
   }
 
   function declareWinner() {
-    console.log(`${winner.name} wins!`)
+    return `${winner.name} wins!`
   }
 
   function declareTie() {
-    console.log('game is tie!')
+    return 'game is tie!'
   }
 
   function resetGameboard() {
@@ -84,9 +87,10 @@ const Gameboard = (function (player1, player2, document) {
     } else if (gameboardCells.every((el) => el.textContent != '')) {
       declareTie()
       resetGameboard()
+    } else {
+      changePlayerTurn()
     }
-    changePlayerTurn()
   }
+})(player1, player2, document)
 
-  return Object.assign({}, { gameboard, playGame })
-})(alper, mutlu, document)
+document.body.appendChild(PlayerCard(player2))
