@@ -4,3 +4,21 @@
 }
 
   font-family: Norse;
+dialog {
+  font-size: 6rem;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background-color: greenyellow;
+  font-weight: bold;
+  color: purple;
+  text-align: center;
+  min-width: 400px;
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(10px);
+}
