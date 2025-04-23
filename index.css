@@ -5,6 +5,40 @@
 
   font-family: Norse;
 
+.gameboard-cell {
+  border: 1px solid black;
+  width: 33.33%;
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+}
+
+.gameboard-cell[id='0'],
+.gameboard-cell[id='1'],
+.gameboard-cell[id='2'] {
+  border-top: none;
+}
+
+.gameboard-cell[id='0'],
+.gameboard-cell[id='3'],
+.gameboard-cell[id='6'] {
+  border-left: none;
+}
+
+.gameboard-cell[id='2'],
+.gameboard-cell[id='5'],
+.gameboard-cell[id='8'] {
+  border-right: none;
+}
+
+.gameboard-cell[id='6'],
+.gameboard-cell[id='7'],
+.gameboard-cell[id='8'] {
+  border-bottom: none;
+}
+
 .player-card {
   font-size: 1.5rem;
   text-align: center;
