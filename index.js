@@ -83,8 +83,10 @@ const Gameboard = (function (player1, player2, document) {
     setTimeout(() => resultDialog.close(), 2000)
   }
 
-  function resetGameboard() {
+  function resetGame() {
     gameboardCells.map((cell) => (cell.textContent = ''))
+    winner = ''
+    resultDialog.textContent = ''
   }
 
   function playGame(cell) {
@@ -92,10 +94,10 @@ const Gameboard = (function (player1, player2, document) {
 
     if (checkWin()) {
       declareWinner()
-      resetGameboard()
+      setTimeout(() => resetGame(), 2000)
     } else if (gameboardCells.every((el) => el.textContent != '')) {
       declareTie()
-      resetGameboard()
+      setTimeout(() => resetGame(), 2000)
     } else {
       changePlayerTurn()
     }
