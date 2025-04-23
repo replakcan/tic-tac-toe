@@ -16,7 +16,7 @@ document.body.appendChild(resultDialog)
 const Gameboard = (function (player1, player2, document) {
   let firstPlayerTurn = true
   let player
-  let winner
+  let winner = ''
 
   const gameboard = TicTacToeBoard()
   document.body.appendChild(gameboard)
