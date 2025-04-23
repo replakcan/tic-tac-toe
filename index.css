@@ -3,7 +3,22 @@
   src: url('font/Norse-Bold.otf');
 }
 
+body {
   font-family: Norse;
+  height: 100vh;
+  display: flex;
+  position: relative;
+  background-color: antiquewhite;
+}
+
+.gameboard {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 300px;
+  width: 40%;
+  aspect-ratio: 1 / 1;
+}
 
 .gameboard-cell {
   border: 1px solid black;
